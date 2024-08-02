@@ -1,5 +1,5 @@
 import { openai } from "@ai-sdk/openai";
-import { embedMany } from "ai";
+import { embed, embedMany } from "ai";
 
 const embeddingModel = openai.embedding("text-embedding-ada-002");
 
@@ -23,4 +23,15 @@ export const generateEmbeddings = async (
         embedding: e,
         content: chunks[i],
     }));
+}
+
+const generateEmbedding = async (value: string): Promise<number[]> => {
+    const input = value.replaceAll('\\n', ' ');
+
+    const { embedding } = await embed({
+        model:embeddingModel,
+        value: input,
+    });
+
+    return embedding;
 }
