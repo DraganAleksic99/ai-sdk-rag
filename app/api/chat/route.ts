@@ -2,6 +2,7 @@ import { openai } from "@ai-sdk/openai";
 import { convertToCoreMessages, streamText, tool } from "ai";
 import { z } from "zod";
 import { createResource } from "@/lib/actions/resources";
+import { findRelevantContent } from "@/lib/ai/embeddings";
 
 export const maxDuration = 30;
 
@@ -25,6 +26,13 @@ export async function POST(request: Request) {
                 }),
                 execute: async ({ content }) => createResource({ content }),
             }),
+            getInformation: tool({
+                description: "Get information from your knowledge base to answer questions.",
+                parameters: z.object({
+                    question: z.string().describe("The users question"),
+                }),
+                execute: async ({ question }) => findRelevantContent(question),
+            })
         },   
     });
 
