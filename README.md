@@ -4,7 +4,7 @@ A chatbot that responds only with information that it has within its knowledge b
 
 <br>
 
-https://github.com/user-attachments/assets/c5473474-ff24-4038-af66-317f50a44e49
+https://github.com/user-attachments/assets/0be6de55-2c68-4150-a79f-0a8564b9ce99
 
 ## Stack
 
